@@ -1,18 +1,29 @@
-import React from 'react';
-import './App.scss';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './css/Reset.scss';
+import './css/layout.scss';
+import Layout from './components/layout/Layout';
+import Fifth from './components/pages/Fifth';
+import First from './components/pages/First';
+import Fourth from './components/pages/Fourth';
+import Second from './components/pages/Second';
+import Third from './components/pages/Third';
+import Intro from './components/pages/Intro';
 
 function App() {
   return (
     <div className="App">
-      <div className="elevator_frame">
-        <div className="elevator_door left"></div>
-        <div className="elevator_door right"></div>
-      </div>
-      <div className="stage stage_first"></div>
-      <div className="stage stage_second"></div>
-      <div className="stage stage_third"></div>
-      <div className="stage stage_fourth"></div>
-      <div className="stage stage_fifth"></div>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/fifth" element={<Fifth />}></Route>
+            <Route path="/fourth" element={<Fourth />}></Route>
+            <Route path="/third" element={<Third />}></Route>
+            <Route path="/second" element={<Second />}></Route>
+            <Route path="/first" element={<First />}></Route>
+            <Route path="/" element={<Intro />}></Route>
+          </Routes>
+        </Layout>
+      </BrowserRouter>
     </div>
   );
 }

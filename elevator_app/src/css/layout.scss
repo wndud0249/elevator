@@ -1,0 +1,320 @@
+@import '_variables.scss';
+
+.App {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* header */
+.header_wrapper {
+  height: 100px;
+  .front {
+    height: 70px;
+    background-color: $floor;
+    padding: 1px;
+    box-sizing: border-box;
+    .front_numbers_wrapper {
+      width: 500px;
+      height: 50px;
+      // background-color: aqua;
+      margin: 10px auto;
+      ul {
+        height: 30px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        li {
+          font-weight: 900;
+          color: #6e6e6e;
+          width: 30px;
+          height: 30px;
+          border: 1px solid white;
+          background-color: white;
+          border-radius: 3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 3px 3px #6e6e6e;
+        }
+      }
+    }
+  }
+  .floor {
+    height: 30px;
+    border-top: 1px solid black;
+    background: linear-gradient(darken($floor, 20%), lighten(black, 20%));
+  }
+}
+
+/* footer */
+.footer_wrapper {
+  height: 50px;
+  background-color: $floor;
+  padding-top: 3px;
+  border-top: 2px solid black;
+  box-sizing: border-box;
+  .elevator-line {
+    width: 100%;
+    height: 5px;
+    background-color: black;
+  }
+  .elevator-floor {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    border-top: 2px solid black;
+  }
+}
+
+/* page 공통 */
+.page_wrapper {
+  height: calc(100vh - 150px);
+  min-height: 300px;
+  text-align: center;
+}
+
+/* elevator */
+.elevator_wrap {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 140px);
+  top: 100px;
+  right: 0;
+  overflow: hidden;
+
+  .elevator_wrap_left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12vw;
+    height: calc(100vh - 140px);
+    background-color: $floor;
+    z-index: 1;
+    .front {
+      width: 11vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: calc(100vh - 140px);
+      border-right: 1px solid black;
+      z-index: 2;
+    }
+    .side {
+      width: 1vw;
+      position: absolute;
+      top: 0;
+      left: 11vw;
+      height: calc(100vh - 140px);
+      background: linear-gradient(to right, darken($floor, 20%), lighten(black, 20%));
+      z-index: 2;
+    }
+  }
+
+  .elevator_left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 52vw;
+    height: calc(100vh - 140px);
+    background-color: aqua;
+    display: flex;
+    margin-left: -40vw;
+
+    .door {
+      width: 100%;
+      height: 100%;
+      background-color: #9e9e9e;
+    }
+    .bar {
+      width: 5%;
+      height: 100%;
+      background-color: black;
+    }
+  }
+
+  .elevator_wrap_right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12vw;
+    height: calc(100vh - 140px);
+    background-color: $floor;
+    z-index: 1;
+    .side {
+      width: 1vw;
+      position: absolute;
+      top: 0;
+      right: 11vw;
+      height: calc(100vh - 140px);
+      background: linear-gradient(to left, darken($floor, 20%), lighten(black, 20%));
+      z-index: 2;
+    }
+    .front {
+      width: 11vw;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: calc(100vh - 140px);
+      border-right: 1px solid black;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .side_floor_numbers_wrapper {
+        width: 100px;
+        height: 400px;
+        background-color: #6e6e6e;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 100px 15px;
+        box-sizing: border-box;
+        position: relative;
+        .floor_number {
+          margin: 2px;
+          width: 30px;
+          height: 30px;
+          border-radius: 3px;
+          background-color: aliceblue;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &.yellow {
+            background-color: yellow;
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .peg {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border: 1px solid black;
+          font-size: 10px;
+          text-align: center;
+          border-radius: 10px;
+          line-height: 8px;
+          &.peg_1 {
+            top: 10px;
+            left: 10px;
+          }
+          &.peg_2 {
+            top: 10px;
+            right: 10px;
+          }
+          &.peg_3 {
+            bottom: 10px;
+            left: 10px;
+          }
+          &.peg_4 {
+            bottom: 10px;
+            right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .elevator_right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    height: calc(100vh - 140px);
+    background-color: #9e9e9e;
+    margin-right: -40vw;
+    border-bottom: 50px solid black;
+  }
+}
+
+.elevator_wrap.closing .elevator_left {
+  animation: shake_left_door;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.elevator_wrap.closing .elevator_right {
+  animation: shake_right_door;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+.elevator_wrap.closed .elevator_left {
+  transform: translateX(40vw);
+}
+.elevator_wrap.closed .elevator_right {
+  transform: translateX(-40vw);
+}
+
+.elevator_wrap.opening .elevator_left {
+  animation: open_left_door;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+.elevator_wrap.opening .elevator_right {
+  animation: open_right_door;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+.elevator_wrap.opened .elevator_left {
+  transform: translateX(0vw);
+}
+.elevator_wrap.opened .elevator_right {
+  transform: translateX(40vw);
+}
+
+@keyframes shake_left_door {
+  0% {
+    transform: translateX(0vw);
+  }
+
+  75% {
+    transform: translateX(40vw);
+  }
+  90% {
+    transform: translateX(40.3vw);
+  }
+  95% {
+    transform: translateX(39.8vw);
+  }
+  100% {
+    transform: translateX(40vw);
+  }
+}
+
+@keyframes shake_right_door {
+  0% {
+    transform: translateX(0vw);
+  }
+  75% {
+    transform: translateX(-40vw);
+  }
+  90% {
+    transform: translateX(-39.7vw);
+  }
+  95% {
+    transform: translateX(-40.2vw);
+  }
+  100% {
+    transform: translateX(-40vw);
+  }
+}
+
+@keyframes open_left_door {
+  0% {
+    transform: translateX(40vw);
+  }
+  100% {
+    transform: translateX(0vw);
+  }
+}
+@keyframes open_right_door {
+  0% {
+    transform: translateX(-40vw);
+  }
+  100% {
+    transform: translateX(0vw);
+  }
+}
